@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
@@ -6,19 +6,28 @@ import Navbar from '../components/navbar'
 import BuyingPage from '../components/buyingPage'
 import SellingPage from '../components/sellingPage'
 import HomePage from '../components/homePage'
+import Stocks from '../components/stocks.json'
 
 export default function Index() {
-  const [view,setView] = useState('home')
-  const [cash, setCash] = useState(1000)
+  const [view,setView] = useState('home');
+  const [cash, setCash] = useState(5000);
+  const [stocks,setStocks] = useState(Stocks);
 
+  useEffect(()=>{
+
+  })
+
+  function calculateStocks(){
+
+  }
 
   let render;
   if (view ==='home'){
     render = <HomePage/>
   } else if (view === 'buying'){
-    render = <BuyingPage/>
+    render = <BuyingPage stocks={stocks}/>
   } else if (view ==='selling'){
-    render = <SellingPage/>
+    render = <SellingPage stocks={stocks}/>
   }
   return (
     <>
