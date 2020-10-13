@@ -22,6 +22,9 @@ const useStyles = makeStyles((theme) => ({
     background: '#e75480',
     marginLeft:'10px'
   },
+  availableCash: {
+    padding: '10px'
+  },
 }));
 
 export default function Navbar(props) {
@@ -41,7 +44,9 @@ export default function Navbar(props) {
               Selling
             </Button>
 
-
+          <Typography className={classes.availableCash}>
+            <b>Available Cash:</b> ${props.availableCash}
+          </Typography>
         </Toolbar>
       </AppBar>
     </div>
