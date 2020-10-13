@@ -4,16 +4,16 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Navbar from '../components/navbar'
 
-export default function Index() {
+export default function Buying() {
   return (
     <>
       <Navbar />
-    <Container>
+      <Container>
 
-      <Box my={4}>
-        <h1>Testing</h1>
-      </Box>
-    </Container>
+        <Box my={4}>
+          <h1>Buying</h1>
+        </Box>
+      </Container>
     </>
   );
 }
