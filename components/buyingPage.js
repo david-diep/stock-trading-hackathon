@@ -5,13 +5,7 @@ import Box from '@material-ui/core/Box';
 import stocks from './stocks.json'
 
 export default function BuyingPage() {
-  // 🤔
-  // const ownedStocks = []
-  // for (let i = 0; i < stocks.length; i++) {
-  //   if (stocks[i].owned > 0) {
-  //     ownedStocks.push(stocks[i])
-  //   }
-  // }
+
 
   return (
     <>
@@ -25,14 +19,7 @@ export default function BuyingPage() {
 
       </Container>
 
-      {/* 🤔
-      <ul>
-        {ownedStocks.map(stock => {
-          <li key={stock.id}>
-            {stock.name}
-          </li>
-        })}
-      </ul> */}
+
     </>
   );
 }
