@@ -26,10 +26,15 @@ let stockList = []
         <Box my={4}>
           <h1>Buying</h1>
         </Box>
-      </Container>
+
         <List >
           {stockList}
         </List>
+
+      </Container>
+
+        
+
     </>
   );
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
@@ -8,8 +8,8 @@ import SellingPage from '../components/sellingPage'
 import HomePage from '../components/homePage'
 
 export default function Index() {
-  const [view,setView] = React.useState('home')
-
+  const [view,setView] = useState('home')
+  const [cash, setCash] = useState(1000)
 
 
   let render;
@@ -22,7 +22,10 @@ export default function Index() {
   }
   return (
     <>
-    <Navbar setView={setView}/>
+    <Navbar
+      setView={setView}
+      availableCash={cash}
+      />
     {render}
     </>
   );
