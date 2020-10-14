@@ -37,6 +37,7 @@ export default function BuyingPage(props) {
             id={stockId}
             label="Quantity"
             variant="outlined"
+            type="number"
             className={classes.quantityField}/>
           <Button
             onClick={(event) => {
