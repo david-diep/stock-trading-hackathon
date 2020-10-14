@@ -11,7 +11,7 @@ import Stocks from '../components/stocks.json'
 export default function Index() {
   const [view,setView] = useState('home');
   const [cash, setCash] = useState(5000);
-  const [stocks,setStocks] = useState(Stocks);
+  const [stocks, setStocks] = useState(Stocks);
 
   useEffect(()=>{
 
@@ -21,11 +21,18 @@ export default function Index() {
 
   }
 
+  function handleBuy(id, name, cost, owned, event){
+    console.log('$'+id+' ' +name+ ' was clicked, the price per share is: ' +cost+ ' and you own ' +owned+ ' shares.' )
+  }
+
   let render;
   if (view ==='home'){
     render = <HomePage/>
   } else if (view === 'buying'){
-    render = <BuyingPage stocks={stocks}/>
+    render =
+    <BuyingPage
+      handleBuy={handleBuy}
+      stocks={stocks}/>
   } else if (view ==='selling'){
     render = <SellingPage stocks={stocks}/>
   }
