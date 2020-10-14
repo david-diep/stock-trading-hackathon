@@ -1,22 +1,43 @@
+import { makeStyles } from '@material-ui/core/styles';
 import React from 'react';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-//import stocks from './stocks.json'
-import { List, ListItem, Button, ListItemSecondaryAction, ListItemText } from '@material-ui/core';
+import { List, ListItem, Button, ListItemSecondaryAction, ListItemText, TextField } from '@material-ui/core';
+
+const useStyles = makeStyles((theme) => ({
+  buyButton: {
+    marginTop: '4px'
+  },
+  quantityField: {
+    marginRight: '10px'
+  },
+  stockText: {
+    marginRight: '10px'
+  }
+}));
 
 export default function BuyingPage(props) {
-let stockList = []
+  const classes = useStyles();
+  let stockList = []
   for(let i=0; i<props.stocks.length; i++){
+  const stockId = props.stocks[i].id
+  const stockName = props.stocks[i].name
+  const pricePerShare = props.stocks[i].cost
+  const sharesOwned = props.stocks[i].owned
   stockList.push(
-    <ListItem>
+    <ListItem
+      key={stockId}>
       <ListItemText
-        primary={props.stocks[i].name}
-        secondary={props.stocks[i].cost}
-      />
-      <ListItemSecondaryAction>
-        <Button variant="contained" color="primary">Buy</Button>
-      </ListItemSecondaryAction>
+        className={classes.stockText}
+        primary={stockName}
+        secondary={pricePerShare}/>
+        <TextField required id={stockId} label="Quantity" variant="outlined" className={classes.quantityField}/>
+        <Button
+          onClick={(event) => {props.handleBuy(stockId, stockName, pricePerShare, sharesOwned, event)}}
+          variant="contained"
+          color="primary"
+          className={classes.buyButton}>Buy</Button>
     </ListItem>
  )}
 
@@ -26,15 +47,10 @@ let stockList = []
         <Box my={4}>
           <h1>Buying</h1>
         </Box>
-
         <List >
           {stockList}
         </List>
-
       </Container>
-
-
-
     </>
   );
 }
