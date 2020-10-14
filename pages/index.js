@@ -12,17 +12,43 @@ export default function Index() {
   const [view,setView] = useState('home');
   const [cash, setCash] = useState(5000);
   const [stocks, setStocks] = useState(Stocks);
+  const [purchaseHistory, setPurchaseHistory] = useState([])
 
   useEffect(()=>{
-
+    console.log('you have $' + cash + ' remaining.')
+    console.log('Purchase History: ', purchaseHistory)
   })
 
-  function calculateStocks(){
-
+  function getPurchaseCost(id, cost, quantity){
+    const ppsFloat = parseFloat(cost.slice(1, cost.length))
+    const purchaseCost = (ppsFloat * quantity).toFixed(2)
+    console.log(+ quantity + ' shares of ' + id + ' will cost ' + '$' + purchaseCost)
+    return purchaseCost
   }
 
-  function handleBuy(id, name, cost, owned, event){
-    console.log('$'+id+' ' +name+ ' was clicked, the price per share is: ' +cost+ ' and you own ' +owned+ ' shares.' )
+  function handleBuy(id, name, cost,  quantity, event){
+    let purchasedStock = { id: id, name: name, cost: cost, owned: quantity }
+    if (quantity > 0) {
+      console.log('i want to buy', quantity ,'shares of ' + id)
+      for (let i = 0; i < purchaseHistory.length; i++) {
+        if (purchaseHistory[i] && purchaseHistory[i].id === id) {
+          purchasedStock = { id: id, name: name, cost: cost, owned: (purchaseHistory[i].owned + quantity) }
+        }
+      }
+    } else {
+      console.log('quantity must be greater than 0')
+      quantity = 0
+      purchasedStock = null
+    }
+    const buyCost = getPurchaseCost(id, cost, quantity)
+    if (cash > buyCost) {
+      setCash((cash - buyCost).toFixed(2))
+    } else {
+      purchasedStock = null
+      console.log('you dont have enough money for this transaction')
+    }
+    let newState = [...purchaseHistory, purchasedStock]
+    setPurchaseHistory(newState)
   }
 
   let render;
@@ -30,18 +56,20 @@ export default function Index() {
     render = <HomePage/>
   } else if (view === 'buying'){
     render =
-    <BuyingPage
-      handleBuy={handleBuy}
-      stocks={stocks}/>
+      <BuyingPage
+        handleBuy={handleBuy}
+        stocks={stocks}
+        purchaseHistory={purchaseHistory}/>
   } else if (view ==='selling'){
-    render = <SellingPage stocks={stocks}/>
+    render =
+      <SellingPage
+        purchaseHistory={purchaseHistory}/>
   }
   return (
     <>
     <Navbar
       setView={setView}
-      availableCash={cash}
-      />
+      availableCash={cash}/>
     {render}
     </>
   );
