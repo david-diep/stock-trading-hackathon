@@ -40,15 +40,11 @@ export default function BuyingPage(props) {
             type="number"
             className={classes.quantityField}/>
           <Button
-            onClick={(event) => {
-              props.handleBuy(stockId,
-                              stockName,
-                              pricePerShare,
-                              parseInt(quantity),
-                              event)}}
+            className={classes.buyButton}
             variant="contained"
             color="primary"
-            className={classes.buyButton}>Buy</Button>
+            onClick={(event) => { props.handleBuy(stockId, stockName, pricePerShare, parseInt(quantity), event)}}
+          >Buy</Button>
       </ListItem>
   )}
 
