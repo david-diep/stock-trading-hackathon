@@ -31,8 +31,7 @@ export default function StockPurchaseListItem(props) {
 
 
   function handleSell() {
-      dispatch(stockOwnedChange(stock.id, Math.max(0, quantity)));
-
+      dispatch(stockOwnedChange(stock.id, Math.max(0, stocks.owned-quantity)));
   }
 
   return (
