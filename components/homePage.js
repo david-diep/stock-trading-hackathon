@@ -12,8 +12,8 @@ import { Grid } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
   containerStyle: {
-    backgroundColor: 'whitesmoke',
-    height: '100vh'
+    height: '100vh',
+    width: '100vw'
   },
   headingStyle: {
     marginTop: '10px'
@@ -28,7 +28,7 @@ export default function HomePage() {
   return (
     <>
       <Container maxwidth="sm"  className={classes.containerStyle}>
-        <Grid container spacing={3}>
+        <Grid container>
           <Grid item xs={6}>
             <Typography className={classes.headingStyle} variant="h3" align="center">
               Welcome to <br/> Stonks Trader Pro
