@@ -47,7 +47,7 @@ export default function Navbar(props) {
             </Button>
 
           <Typography className={classes.availableCash}>
-            <b>Available Cash:</b> ${money}
+            <b>Available Cash:</b> ${money.toFixed(2)}
           </Typography>
         </Toolbar>
       </AppBar>
