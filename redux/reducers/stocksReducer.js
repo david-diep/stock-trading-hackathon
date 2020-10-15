@@ -16,8 +16,8 @@ const stocksReducer = (state = initialState , action) => {
       const newStocks = state.stocks.slice()
       for (let i = 0; i < newStocks.length; i++) {
         let newPrice = newStocks[i].price;
-        const negative = Math.random() < .5 ? -1 : 1;
-        newPrice = newPrice * (Math.random() * .03 * negative + 1).toFixed(2);      // returns a random integer from 0 to .15
+        const negative = Math.random() < .47 ? -1 : 1; //comparison decides whether stock market trends up or down
+        newPrice = newPrice * (Math.random() * .07 * negative + 1).toFixed(2);      // change the number multiplying by random for degree of change in stocks
         newStocks[i].price = newPrice.toFixed(2);
       }
       return Object.assign({}, state, {stocks:newStocks});
