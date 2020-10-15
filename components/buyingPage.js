@@ -8,8 +8,8 @@ import { List, ListItem, Button, ListItemSecondaryAction, ListItemText } from '@
 
 export default function BuyingPage(props) {
   let stockList = []
-  const stocks = useSelector(state=>state.stocks.stocks)
-  console.log(stocks)
+  const stocks = useSelector(state=>state.stockState.stocks)
+  //console.log(stocks)
   if (stocks!==null){
     for (let i = 0; i < stocks.length; i++) {
       stockList.push(

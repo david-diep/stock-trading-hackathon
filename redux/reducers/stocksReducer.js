@@ -1,8 +1,9 @@
-import { STOCK_PRICE_CHANGE, STOCK_QUANTITY_CHANGE } from '../actions/stocksActions'
+import { STOCK_PRICE_CHANGE, STOCK_OWNED_CHANGE } from '../actions/stocksActions'
 import Stocks from '../../components/stocks.json'
 
 const initialState = {
-  stocks: Stocks
+  stocks: Stocks,
+  money: 5000
 }
 
 const stocksReducer = (state = initialState , action) => {
@@ -18,16 +19,48 @@ const stocksReducer = (state = initialState , action) => {
       }
       return Object.assign({},state,{stocks:newStocks});
 
-    case STOCK_QUANTITY_CHANGE:
+    case STOCK_OWNED_CHANGE:
       //stock, quantity
-      return Object.assign({}, state, {
-        //changes
-      })
+      //quantity is the final number of stock
+      //stock.owned is current number of stock possessed
+      const {stockId, quantity} = action.payload
+      let newStocks = state.stocks.slice()
+      let newMoney = state.money
+      const editIndex = newStocks.findIndex((stock)=> stock.id===stockId)
+      const focusStock = newStocks[editIndex]
+      if (quantity > focusStock.owned){//if buying
+        const buyAmount = focusStock.owned - quantity;
+
+        const total = focusStock.price * buyAmount;
+        if (total > newMoney){ //cancel if not enough money
+          return state;
+        } else {
+          newMoney -= total;
+          focusStock.owned += buyAmount;
+          newStocks[editIndex]=focusStock;
+          return Object.assign({}, state, {
+            stocks: newStocks,
+            money: newMoney
+          })
+        }
+      } else {//if selling
+
+        const total = focusStock.price * focusStock.owned;
+        newMoney+=total;
+        focusStock.owned-=quantity;
+        return Object.assign({}, state, {
+          stocks: newStocks,
+          money: newMoney
+        })
+
+      }
+      //end of STOCK_QUANTITY_CHANGE
+  })
+
 
     default:
       return state;
         }
-
   }
 
 
