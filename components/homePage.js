@@ -9,19 +9,48 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme) => ({
   tutorialHeading: {
     marginTop: '20px',
     marginBottom: '12px'
   },
+  containerStyle: {
+    height: '100vh',
+    width: '100vw'
+  },
+  headingStyle: {
+    marginTop: '10px'
+  },
+  gridTextLeft: {
+    marginTop: '20px'
+  }
 }));
 
 export default function HomePage() {
   const classes = useStyles();
   return (
     <>
-      <Container>
+      <Container maxwidth="sm" className={classes.containerStyle}>
+        <Grid container>
+          <Grid item xs={6}>
+            <Typography className={classes.headingStyle} variant="h3" align="center">
+              Welcome to <br /> Stonks Trader Pro
+          </Typography>
+          </Grid>
+          <Grid item xs={6}>
+            <Typography className={classes.gridTextLeft} align="left">A stock market simulator.
+            <br />
+            Users can buy and sell stocks while tracking their available balance of cash.
+            <br />
+            Made by <a href="https://www.linkedin.com/in/david-diep-dev/ " target="__blank">David Diep</a> and <a href="https://www.linkedin.com/in/timahn-webdev/" target="__blank">Tim Ahn</a>
+            <br />
+              <a href="https://github.com/david-diep/stocking-trading-hackathon">Checkout the code!</a>
+          </Typography>
+          </Grid>
+        </Grid>
+        <br />
         <Typography className={classes.tutorialHeading} variant="h4">
           Tutorial
         </Typography>
