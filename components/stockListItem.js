@@ -23,8 +23,12 @@ export default function StockListItem(props){
   const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(0)
 
+  const max =  Math.floor(props.money/stock.price)
   function handlePurchase(){
-    dispatch(stockOwnedChange(stock.id,quantity+stock.owned));
+    if(quantity*stock.price <=money){
+      dispatch(stockOwnedChange(stock.id, quantity + stock.owned));
+    }
+
   }
 
   return(
@@ -37,9 +41,10 @@ export default function StockListItem(props){
           secondary={'$'+stock.price} />
         <TextField required
           onChange={event => { setQuantity(parseInt(event.target.value)) }}
+          style={{width:'20%'}}
           InputProps={{
             inputProps: {
-              min: 1
+              max: max, min: 1
             }
           }}
           id={stock.id}

@@ -10,13 +10,13 @@ import StockListItem from '../components/stockListItem'
 
 
 export default function BuyingPage() {
-  const classes = useStyles();
+  //const classes = useStyles();
   const dispatch = useDispatch();
 
   const stocks = useSelector(state => state.stockState.stocks)
-
+  const money = useSelector(state => state.stockState.money)
   const stockList = stocks.map((stock)=>
-    (<StockListItem key={stock.id} stock={stock}/>));
+    (<StockListItem key={stock.id} stock={stock} money={money}/>));
 
 
 
