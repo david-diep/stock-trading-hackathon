@@ -14,31 +14,15 @@ import { stockPriceChange} from '../redux/actions/stocksActions'
 
 export default function Index() {
   const [view,setView] = useState('home');
-  const [cash, setCash] = useState(5000);
+
   const dispatch = useDispatch();
 
-  const mapStateToProps = (state) =>{
-
-  }
-
   let timeUpdate;
-  setTimeout(() => { timeUpdate = setInterval(updateStocks, 5000)},3000);
+  setTimeout(() => { timeUpdate = setInterval(updateStocks, 5000) }, 3000);
 
-  function updateStocks(){
+  function updateStocks() {
     dispatch(stockPriceChange());
   }
-  // function updateStocks(){
-  //   setStocks(prevStocks =>{
-  //     console.log('updating');
-  //     for(let i=0; i < prevStocks.length; i++){
-  //       let newPrice = prevStocks[i].price;
-  //       const negative = Math.random()<.5 ? -1 : 1;
-  //       newPrice = newPrice*(Math.random() * .03 *negative +1).toFixed(2);      // returns a random integer from 0 to .15
-  //       prevStocks[i].price = newPrice.toFixed(2);
-  //     }
-  //     return prevStocks;
-  //   })
-  // }
 
   let render;
   if (view ==='home'){
@@ -52,8 +36,7 @@ export default function Index() {
     <Provider store={store}>
     <Navbar
       setView={setView}
-      availableCash={cash}
-      />
+      availableCash={cash}/>
     {render}
     </Provider>
   );
