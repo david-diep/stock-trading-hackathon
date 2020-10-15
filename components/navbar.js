@@ -31,7 +31,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Navbar(props) {
   const classes = useStyles();
-
+  const money = useSelector(state => state.stockState.money)
+  if (money > 1000000) {
+    props.setView('winning')
+  }
   return (
     <div className={classes.root}>
       <AppBar position="static" className={classes.navbar}>
