@@ -59,7 +59,7 @@ export default function BuyingPage() {
   for(let i=0; i<stocks.length; i++){
     const stockId = stocks[i].id
     const stockName = stocks[i].name
-    const pricePerShare = stocks[i].cost
+    const pricePerShare = '$'+stocks[i].price
     const [quantity, setQuantity] = useState(0)
     stockList.push(
       <ListItem
