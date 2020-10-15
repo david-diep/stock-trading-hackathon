@@ -7,7 +7,7 @@ const initialState = {
 }
 
 const stocksReducer = (state = initialState , action) => {
-  let newStocks = state.stocks.slice()
+  const newStocks = state.stocks.slice()
   switch (action.type){
     case STOCK_PRICE_CHANGE:
       console.log('price change updating')
