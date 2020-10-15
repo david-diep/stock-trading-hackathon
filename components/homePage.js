@@ -46,7 +46,7 @@ export default function HomePage() {
             <br />
             Made by <a href="https://www.linkedin.com/in/david-diep-dev/ " target="__blank">David Diep</a> and <a href="https://www.linkedin.com/in/timahn-webdev/" target="__blank">Tim Ahn</a>
             <br />
-              <a href="https://github.com/david-diep/stocking-trading-hackathon">Checkout the code!</a>
+              <a href="https://github.com/david-diep/stock-trading-hackathon">Checkout the code!</a>
           </Typography>
           </Grid>
         </Grid>
