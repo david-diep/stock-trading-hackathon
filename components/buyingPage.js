@@ -9,6 +9,8 @@ import { stockOwnedChange } from '../redux/actions/stocksActions'
 import StockListItem from '../components/stockListItem'
 
 
+
+
 export default function BuyingPage() {
   //const classes = useStyles();
   const dispatch = useDispatch();
@@ -30,6 +32,7 @@ export default function BuyingPage() {
         <List >
           {stockList}
         </List>
+
       </Container>
     </>
   );

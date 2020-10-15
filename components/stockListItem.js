@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 import React, { useState } from 'react';
-
+import Tooltip from '@material-ui/core/Tooltip';
 import {  ListItem, Button, ListItemSecondaryAction, ListItemText, TextField } from '@material-ui/core';
 import { useDispatch } from 'react-redux'
 import { stockOwnedChange } from '../redux/actions/stocksActions'
@@ -35,29 +35,33 @@ export default function StockListItem(props){
     <>
       <ListItem
         key={stock.id}>
+        <Tooltip placement="bottom-start" title="Stock name and price" aria-label="Stock name and price">
         <ListItemText
           className={classes.stockText}
           primary={stock.name}
-          secondary={'$'+stock.price} />
-        <TextField required
-          onChange={event => { setQuantity(parseInt(event.target.value)) }}
-          style={{width:'20%'}}
-          InputProps={{
-            inputProps: {
-              max: max, min: 1
-            }
-          }}
-          id={stock.id}
-          label="Quantity"
-          variant="outlined"
-          type="number"
-          className={classes.quantityField} />
+          secondary={'$' + stock.price} /></Tooltip>
+        <Tooltip placement="left" title="Enter purchase amount" aria-label="purchase quantity">
+          <TextField required
+            onChange={event => { setQuantity(parseInt(event.target.value)) }}
+            style={{width:'20%'}}
+            InputProps={{
+              inputProps: {
+                max: max, min: 1
+              }
+            }}
+            id={stock.id}
+            label="Quantity"
+            variant="outlined"
+            type="number"
+            className={classes.quantityField} />
+          </Tooltip>
+        <Tooltip placement="top-end" title="Buy button" aria-label="Buy button">
         <Button
           className={classes.buyButton}
           variant="contained"
           color="primary"
         onClick={() => handlePurchase()}
-        >Buy</Button>
+          >Buy</Button></Tooltip>
       </ListItem>
     </>
   )
