@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function StockListItem(props){
+export default function StockPurchaseListItem(props){
   const stock = props.stock;
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -25,7 +25,7 @@ export default function StockListItem(props){
 
   const max =  Math.floor(props.money/stock.price)
   function handlePurchase(){
-    if(quantity*stock.price <= props.money){
+    if(quantity*stock.price <=props.money){
       dispatch(stockOwnedChange(stock.id, quantity + stock.owned));
     }
 

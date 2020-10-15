@@ -18,6 +18,7 @@ export default function MyApp(props) {
     }
   }, []);
 
+
   return (
     <React.Fragment>
       <Head>
