@@ -6,8 +6,6 @@ import Navbar from '../components/navbar'
 import BuyingPage from '../components/buyingPage'
 import SellingPage from '../components/sellingPage'
 import HomePage from '../components/homePage'
-
-
 import { useDispatch, useSelector } from 'react-redux'
 import store from '../redux/store'
 import { stockPriceChange} from '../redux/actions/stocksActions'
