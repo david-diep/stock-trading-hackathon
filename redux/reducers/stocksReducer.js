@@ -67,7 +67,7 @@ const stocksReducer = (state = initialState , action) => {
       })
     }
 
-      //end of STOCK_QUANTITY_CHANGE
+      //end of stock sell
     default:
       return state;
   } //end of switch case
