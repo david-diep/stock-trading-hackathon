@@ -1,6 +1,7 @@
 import React from 'react';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 import Accordion from '@material-ui/core/Accordion'
 import AccordionSummary from '@material-ui/core/AccordionSummary'
 import AccordionDetails from '@material-ui/core/AccordionDetails'
@@ -10,11 +11,10 @@ import ListItem from '@material-ui/core/ListItem';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 
-
 const useStyles = makeStyles((theme) => ({
-  containerStyle: {
-    height: '100vh',
-    width: '100vw'
+  tutorialHeading: {
+    marginTop: '20px',
+    marginBottom: '12px'
   },
   containerStyle: {
     height: '100vh',
@@ -105,8 +105,24 @@ export default function HomePage() {
                 <ListItem>If you sell stocks, your available funds will increase.</ListItem>
               </List>
           </Typography>
-          </Grid>
-        </Grid>
+          </AccordionDetails>
+        </Accordion>
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel2a-content"
+            id="panel2a-header"
+          >
+            <Typography variant="h6">Stock Price Changes</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography>
+              <List>
+                <ListItem>Stock prices change in real-time and a new price is dynamically displayed every five seconds.</ListItem>
+              </List>
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
       </Container>
     </>
   );
