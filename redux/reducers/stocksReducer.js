@@ -7,7 +7,7 @@ const initialState = {
 }
 
 const stocksReducer = (state = initialState , action) => {
-  let newStocks = state.stocks.slice()
+  const newStocks = state.stocks.slice()
   switch (action.type){
     case STOCK_PRICE_CHANGE:
       console.log('price change updating')
@@ -52,7 +52,7 @@ const stocksReducer = (state = initialState , action) => {
         console.log('selling')
         const total = focusStock.price * focusStock.owned;
         newMoney+=total;
-        focusStock.owned-=quantity;
+        focusStock.owned=quantity;
         return Object.assign({}, state, {
           stocks: newStocks,
           money: newMoney
