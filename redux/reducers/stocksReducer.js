@@ -10,7 +10,7 @@ const stocksReducer = (state = initialState , action) => {
   const newStocks = state.stocks.slice()
   switch (action.type){
     case STOCK_PRICE_CHANGE:
-      console.log('price change updating')
+
       for (let i = 0; i < newStocks.length; i++) {
         let newPrice = newStocks[i].price;
         const negative = Math.random() < .5 ? -1 : 1;
@@ -25,24 +25,21 @@ const stocksReducer = (state = initialState , action) => {
       //quantity is the final number of stock
       //stock.owned is current number of stock possessed
       const {stockId, quantity} = action.payload
-      console.log('stock owned change with', stockId, quantity)
+
       let newMoney = state.money
       const editIndex = newStocks.findIndex((stock)=> stock.id===stockId)
       const focusStock = newStocks[editIndex]
       if (quantity > focusStock.owned){//if buying
-        console.log('buying')
+
         const buyAmount = quantity - focusStock.owned;
 
         const total = focusStock.price * buyAmount;
         if (total > newMoney){ //cancel if not enough money
-          console.log('cancel')
           return state;
         } else {
           newMoney -= total;
           focusStock.owned += buyAmount;
           newStocks[editIndex]=focusStock;
-          console.log('money',total,newMoney)
-          console.log(focusStock)
           return Object.assign({}, state, {
             stocks: newStocks,
             money: newMoney
