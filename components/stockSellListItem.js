@@ -56,6 +56,9 @@ export default function StockPurchaseListItem(props) {
           variant="outlined"
           type="number"
           className={classes.quantityField} />
+        <TextField disabled
+          label="Total"
+          value={"$" + (stock.price * quantity).toFixed(2)} />
         <Button
           className={classes.buyButton}
           variant="contained"

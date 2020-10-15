@@ -25,7 +25,10 @@ export default function StockPurchaseListItem(props){
 
   const max =  Math.floor(props.money/stock.price)
   function handlePurchase(){
-      dispatch(stockBuy(stock.id, Math.min(max,quantity)));
+    if (quantity>0){
+      dispatch(stockBuy(stock.id, Math.min(max, quantity)));
+    }
+
   }
 
   return(
@@ -40,7 +43,7 @@ export default function StockPurchaseListItem(props){
         <Tooltip placement="left" title="Enter purchase amount" aria-label="purchase quantity">
           <TextField required
             onChange={event => { setQuantity(parseInt(event.target.value)) }}
-            style={{width:'20%'}}
+            style={{width:'15%'}}
             InputProps={{
               inputProps: {
                 max: max, min: 1
@@ -52,6 +55,10 @@ export default function StockPurchaseListItem(props){
             type="number"
             className={classes.quantityField} />
           </Tooltip>
+        <TextField disabled
+          label="Cost"
+          value={"$"+(stock.price*quantity).toFixed(2)} />
+
         <Tooltip placement="top-end" title="Buy button" aria-label="Buy button">
         <Button
           className={classes.buyButton}
