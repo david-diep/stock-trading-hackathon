@@ -29,6 +29,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Navbar(props) {
   const classes = useStyles();
+  const money = useSelector(state => state.stockState.money)
+
   return (
     <div className={classes.root}>
       <AppBar position="static" className={classes.navbar}>
@@ -45,7 +47,7 @@ export default function Navbar(props) {
             </Button>
 
           <Typography className={classes.availableCash}>
-            <b>Available Cash:</b> ${props.availableCash}
+            <b>Available Cash:</b> ${money}
           </Typography>
         </Toolbar>
       </AppBar>
