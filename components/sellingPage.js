@@ -32,46 +32,41 @@ export default function SellingPage(props) {
       let owned
       const [quantity, setQuantity] = useState(0)
 
-
-
       for (let j = 0; j < ownedStocksList.length; j++) {
         if (ownedStocksList[j].id === props.transactionHistory[i].id) {
           console.log(ownedStocksList[j])
         }
       }
-
       stockId = props.transactionHistory[i].id
       stockName = props.transactionHistory[i].name
       pricePerShare = props.transactionHistory[i].cost
       owned = props.transactionHistory[i].owned
 
-
-
-        ownedStocksList.push(
-          <ListItem
-            key={stockId}>
-            <ListItemText
-              className={classes.stockText}
-              primary={stockName}
-              secondary={pricePerShare} />
-            <Typography className={classes.stockText}>Owned: {owned}</Typography>
-            <TextField required
-              onChange={e => { setQuantity(parseInt(e.target.value)) }}
-              id={stockId}
-              label="Quantity"
-              variant="outlined"
-              type="number"
-              className={classes.quantityField} />
-            <Button
-              className={classes.sellButton}
-              variant="contained"
-              color="secondary"
-            //onClick={(event) => { props.handleBuy(stockId, stockName, pricePerShare, parseInt(quantity), event) }}
-            >Sell</Button>
-          </ListItem>
-        )
-      }
+      ownedStocksList.push(
+        <ListItem
+          key={stockId}>
+          <ListItemText
+            className={classes.stockText}
+            primary={stockName}
+            secondary={pricePerShare} />
+          <Typography className={classes.stockText}>Owned: {owned}</Typography>
+          <TextField required
+            onChange={e => { setQuantity(parseInt(e.target.value)) }}
+            id={stockId}
+            label="Quantity"
+            variant="outlined"
+            type="number"
+            className={classes.quantityField} />
+          <Button
+            className={classes.sellButton}
+            variant="contained"
+            color="secondary"
+          //onClick={(event) => { , event) }}
+          >Sell</Button>
+        </ListItem>
+      )
     }
+  }
 
   return (
     <>
