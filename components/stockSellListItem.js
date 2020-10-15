@@ -4,6 +4,7 @@ import Chip from '@material-ui/core/Chip';
 import { ListItem, Button, ListItemSecondaryAction, ListItemText, TextField } from '@material-ui/core';
 import { useDispatch } from 'react-redux'
 import { stockOwnedChange } from '../redux/actions/stocksActions'
+import Tooltip from '@material-ui/core/Tooltip';
 
 const useStyles = makeStyles((theme) => ({
   sellButton: {
@@ -38,11 +39,14 @@ export default function StockPurchaseListItem(props) {
     <>
       <ListItem
         key={stock.id}>
+        <Tooltip placement="bottom-start" title="Stock name and price" aria-label="Stock name and price">
         <ListItemText
           className={classes.stockText}
           primary={stock.name}
-          secondary={'$' + stock.price} />
-        <Chip size="small" label={stock.owned} className={classes.chipColor} />
+          secondary={'$' + stock.price} /></Tooltip>
+        <Tooltip placement="left" title="Quantity owned" aria-label="Quantity owned">
+        <Chip size="small" label={stock.owned} className={classes.chipColor} /></Tooltip>
+        <Tooltip placement="bottom-start" title="Enter amount to sell" aria-label="Enter amount to sell">
         <TextField required
           onChange={event => { setQuantity(parseInt(event.target.value)) }}
           style={{ width: '20%' }}
@@ -55,13 +59,14 @@ export default function StockPurchaseListItem(props) {
           label="Quantity"
           variant="outlined"
           type="number"
-          className={classes.quantityField} />
+          className={classes.quantityField} /></Tooltip>
+      <Tooltip placement="top-end" title="Sell button" aria-label="Sell button">
         <Button
           className={classes.buyButton}
           variant="contained"
           color="primary"
           onClick={() => handleSell()}
-        >Sell</Button>
+        >Sell</Button></Tooltip>
       </ListItem>
     </>
   )
