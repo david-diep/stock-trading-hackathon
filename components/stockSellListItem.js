@@ -3,7 +3,9 @@ import React, { useState } from 'react';
 import Chip from '@material-ui/core/Chip';
 import { ListItem, Button, ListItemSecondaryAction, ListItemText, TextField } from '@material-ui/core';
 import { useDispatch } from 'react-redux'
-import { stockOwnedChange } from '../redux/actions/stocksActions'
+import Tooltip from '@material-ui/core/Tooltip';
+import { stockSell } from '../redux/actions/stocksActions'
+
 
 const useStyles = makeStyles((theme) => ({
   sellButton: {
@@ -31,7 +33,7 @@ export default function StockPurchaseListItem(props) {
 
 
   function handleSell() {
-      dispatch(stockOwnedChange(stock.id, Math.max(0, stock.owned-quantity)));
+      dispatch(stockSell(stock.id, Math.max(stock.owned, quantity)));
   }
 
   return (
@@ -42,7 +44,9 @@ export default function StockPurchaseListItem(props) {
           className={classes.stockText}
           primary={stock.name}
           secondary={'$' + stock.price} />
-        <Chip size="small" label={stock.owned} className={classes.chipColor} />
+        <Tooltip placement="left" title="Amount of stock owned" aria-label="Amount of stock owned">
+        <Chip size="small" label={stock.owned} className={classes.chipColor} /></Tooltip>
+        <Tooltip placement="left" title="Amount to sell" aria-label="Amount to sell">
         <TextField required
           onChange={event => { setQuantity(parseInt(event.target.value)) }}
           style={{ width: '20%' }}
@@ -56,6 +60,13 @@ export default function StockPurchaseListItem(props) {
           variant="outlined"
           type="number"
           className={classes.quantityField} />
+
+        </Tooltip>
+
+        <TextField disabled
+          label="Total"
+          value={"$" + (stock.price * quantity).toFixed(2)} />
+
         <Button
           className={classes.buyButton}
           variant="contained"
