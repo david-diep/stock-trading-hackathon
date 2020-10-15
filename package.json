@@ -10,6 +10,7 @@
     "prop-types": "latest",
     "react": "latest",
     "react-dom": "latest",
+    "react-make-it-rain": "0.0.2",
     "react-redux": "^7.2.1",
     "redux": "^4.0.5"
   },
