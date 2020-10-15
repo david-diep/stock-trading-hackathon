@@ -1,31 +1,67 @@
-# Next.js example
+stock-trading-hackathon
+=======
 
-## How to use
+A hackathon complete for the [MintBean Stock Market Sim Hackathon](https://sites.google.com/mintbean.io/2020-10-07-stock-market-sim/home)
 
-Download the example [or clone the repo](https://github.com/mui-org/material-ui):
+Participants
+------
+[David Diep](https://github.com/david-diep)
 
-```sh
-curl https://codeload.github.com/mui-org/material-ui/tar.gz/master | tar -xz --strip=2  material-ui-master/examples/nextjs
-cd nextjs
+[Tim Ahn](https://github.com/tim-ahn)
+
+Live Demo
+======
+[david-diep.github.io/kanban-hackathon](https://david-diep.github.io/kanban-hackathon/)
+
+Core Requirements
+=======
+A list of imaginary stocks (stored inside an object or array).
+
+A way to simulate the movement of time.
+
+A way to simulate changes in stock prices.
+
+A way to keep track of available cash
+
+A user interface for buying and selling stocks.
+
+
+
+Development
+======
+
+System Requirements
+------
+
+- Node.js 10 or higher
+
+- npm 6 or higher
+
+Technologies Used
+------
+- React.js
+- Next.js
+- react-toastify
+- react-redux
+- Material UI
+
+### Getting Started
+
+
+1. Clone this repository
+
+```shell
+git clone https://github.com/david-diep/stock-market-hackathon.git
+cd stock-market-hackathon
 ```
+2. Install dependencies with NPM
 
-Install it and run:
-
-```sh
+```shell
 npm install
-npm run dev
 ```
 
-or:
+3. Start the project.  It can be view at [http://localhost:3000/](http://localhost:3000/) in the browser
 
-[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/mui-org/material-ui/tree/master/examples/nextjs)
-
-## The idea behind the example
-
-[Next.js](https://github.com/zeit/next.js) is a framework for server-rendered React apps.
-
-## Troubleshooting
-
-### `Warning: Prop className did not match.`
-
-If you get this warning, please make sure that you configure `getInitialProps` in `pages/_document.js` correctly. Check the code in this example for more details.
+```shell
+npm run start
+```
