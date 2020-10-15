@@ -6,6 +6,7 @@ import Navbar from '../components/navbar'
 import BuyingPage from '../components/buyingPage'
 import SellingPage from '../components/sellingPage'
 import HomePage from '../components/homePage'
+import Tutorial from '../components/tutorial'
 import Win from '../components/win'
 import { useDispatch, useSelector } from 'react-redux'
 import store from '../redux/store'
@@ -40,6 +41,8 @@ export default function Index() {
     render = <BuyingPage/>
   } else if (view ==='selling'){
     render = <SellingPage/>
+  } else if (view === 'tutorial') {
+    render = <Tutorial/>
   } else if (view === 'winning') {
     render = <Win/>
   }
