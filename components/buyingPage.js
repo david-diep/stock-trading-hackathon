@@ -7,7 +7,8 @@ import { List, ListItem, Button, ListItemSecondaryAction, ListItemText, TextFiel
 
 const useStyles = makeStyles((theme) => ({
   buyButton: {
-    marginTop: '4px'
+    marginTop: '4px',
+    background: '#80c0c0',
   },
   quantityField: {
     marginRight: '10px'
@@ -46,7 +47,8 @@ export default function BuyingPage(props) {
             onClick={(event) => { props.handleBuy(stockId, stockName, pricePerShare, parseInt(quantity), event)}}
           >Buy</Button>
       </ListItem>
-  )}
+    )
+  }
 
   return (
     <>
@@ -54,7 +56,7 @@ export default function BuyingPage(props) {
         <Box my={4}>
           <h1>Buying</h1>
         </Box>
-        <List >
+        <List>
           {stockList}
         </List>
       </Container>

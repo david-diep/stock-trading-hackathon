@@ -12,43 +12,45 @@ export default function Index() {
   const [view,setView] = useState('home');
   const [cash, setCash] = useState(5000);
   const [stocks, setStocks] = useState(Stocks);
-  const [purchaseHistory, setPurchaseHistory] = useState([])
+  const [transactionHistory, setTransactionHistory] = useState([])
 
   useEffect(()=>{
-    console.log('you have $' + cash + ' remaining.')
-    console.log('Purchase History: ', purchaseHistory)
+    // console.log('you have $' + cash + ' remaining.')
+    console.log('Transaction History: ', transactionHistory)
   })
 
-  function getPurchaseCost(id, cost, quantity){
-    const ppsFloat = parseFloat(cost.slice(1, cost.length))
-    const purchaseCost = (ppsFloat * quantity).toFixed(2)
-    console.log(+ quantity + ' shares of ' + id + ' will cost ' + '$' + purchaseCost)
-    return purchaseCost
+  function getTransactionCost(id, cost, quantity){
+    const ppsFloat = parseFloat(cost.slice(1, cost.length-1))
+    const transactionCost = (ppsFloat * quantity).toFixed(2)
+    console.log(+ quantity + ' shares of ' + id + ' will cost ' + '$' + transactionCost)
+    return transactionCost
   }
 
   function handleBuy(id, name, cost,  quantity, event){
-    let purchasedStock = { id: id, name: name, cost: cost, owned: quantity }
+    let stock = { id: id, name: name, cost: cost, owned: quantity }
     if (quantity > 0) {
       console.log('i want to buy', quantity ,'shares of ' + id)
-      for (let i = 0; i < purchaseHistory.length; i++) {
-        if (purchaseHistory[i] && purchaseHistory[i].id === id) {
-          purchasedStock = { id: id, name: name, cost: cost, owned: (purchaseHistory[i].owned + quantity) }
+      for (let i = 0; i < transactionHistory.length; i++) {
+        if (transactionHistory[i] && transactionHistory[i].id === id) {
+          stock = { id: id, name: name, cost: cost, owned: (transactionHistory[i].owned + quantity) }
         }
       }
     } else {
       console.log('quantity must be greater than 0')
       quantity = 0
-      purchasedStock = null
+      stock = null
     }
-    const buyCost = getPurchaseCost(id, cost, quantity)
+    const buyCost = getTransactionCost(id, cost, quantity)
     if (cash > buyCost) {
       setCash((cash - buyCost).toFixed(2))
-    } else {
-      purchasedStock = null
-      console.log('you dont have enough money for this transaction')
     }
-    let newState = [...purchaseHistory, purchasedStock]
-    setPurchaseHistory(newState)
+    // else {
+    //   stock = null
+    //   console.log('you dont have enough money for this transaction')
+    // }
+    if (stock !== null){
+    let newState = [...transactionHistory, stock]
+    setTransactionHistory(newState)}
   }
 
   let render;
@@ -59,11 +61,11 @@ export default function Index() {
       <BuyingPage
         handleBuy={handleBuy}
         stocks={stocks}
-        purchaseHistory={purchaseHistory}/>
+      transactionHistory={transactionHistory}/>
   } else if (view ==='selling'){
     render =
       <SellingPage
-        purchaseHistory={purchaseHistory}/>
+      transactionHistory={transactionHistory}/>
   }
   return (
     <>
