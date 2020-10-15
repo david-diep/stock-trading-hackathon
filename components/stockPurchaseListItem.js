@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Tooltip from '@material-ui/core/Tooltip';
 import {  ListItem, Button, ListItemSecondaryAction, ListItemText, TextField } from '@material-ui/core';
 import { useDispatch } from 'react-redux'
-import { stockOwnedChange } from '../redux/actions/stocksActions'
+import { stockBuy } from '../redux/actions/stocksActions'
 
 const useStyles = makeStyles((theme) => ({
   buyButton: {
@@ -25,8 +25,8 @@ export default function StockPurchaseListItem(props){
 
   const max =  Math.floor(props.money/stock.price)
   function handlePurchase(){
-    if(quantity*stock.price <=props.money){
-      dispatch(stockOwnedChange(stock.id, quantity + stock.owned));
+    if (quantity>0){
+      dispatch(stockBuy(stock.id, Math.min(max, quantity)));
     }
 
   }
@@ -43,7 +43,7 @@ export default function StockPurchaseListItem(props){
         <Tooltip placement="left" title="Amount to purchase" aria-label="Amount to purchase">
           <TextField required
             onChange={event => { setQuantity(parseInt(event.target.value)) }}
-            style={{width:'20%'}}
+            style={{width:'15%'}}
             InputProps={{
               inputProps: {
                 max: max, min: 1
@@ -55,6 +55,12 @@ export default function StockPurchaseListItem(props){
             type="number"
             className={classes.quantityField} />
           </Tooltip>
+
+        <TextField disabled
+          label="Cost"
+          value={"$"+(stock.price*quantity).toFixed(2)} />
+
+        <Tooltip placement="top-end" title="Buy button" aria-label="Buy button">
 
         <Button
           className={classes.buyButton}
