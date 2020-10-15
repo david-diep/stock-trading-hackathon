@@ -35,12 +35,12 @@ export default function StockPurchaseListItem(props){
     <>
       <ListItem
         key={stock.id}>
-        <Tooltip placement="bottom-start" title="Stock name and price" aria-label="Stock name and price">
+
         <ListItemText
           className={classes.stockText}
           primary={stock.name}
-          secondary={'$' + stock.price} /></Tooltip>
-        <Tooltip placement="left" title="Enter purchase amount" aria-label="purchase quantity">
+          secondary={'$' + stock.price} />
+        <Tooltip placement="left" title="Amount to purchase" aria-label="Amount to purchase">
           <TextField required
             onChange={event => { setQuantity(parseInt(event.target.value)) }}
             style={{width:'20%'}}
@@ -55,13 +55,13 @@ export default function StockPurchaseListItem(props){
             type="number"
             className={classes.quantityField} />
           </Tooltip>
-        <Tooltip placement="top-end" title="Buy button" aria-label="Buy button">
+
         <Button
           className={classes.buyButton}
           variant="contained"
           color="primary"
         onClick={() => handlePurchase()}
-          >Buy</Button></Tooltip>
+          >Buy</Button>
       </ListItem>
     </>
   )
