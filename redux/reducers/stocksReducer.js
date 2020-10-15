@@ -7,10 +7,10 @@ const initialState = {
 }
 
 const stocksReducer = (state = initialState , action) => {
-
+  let newStocks = state.stocks.slice()
   switch (action.type){
     case STOCK_PRICE_CHANGE:
-      let newStocks = state.stocks.slice()
+
       for (let i = 0; i < newStocks.length; i++) {
         let newPrice = newStocks[i].price;
         const negative = Math.random() < .5 ? -1 : 1;
@@ -24,7 +24,7 @@ const stocksReducer = (state = initialState , action) => {
       //quantity is the final number of stock
       //stock.owned is current number of stock possessed
       const {stockId, quantity} = action.payload
-      let newStocks = state.stocks.slice()
+
       let newMoney = state.money
       const editIndex = newStocks.findIndex((stock)=> stock.id===stockId)
       const focusStock = newStocks[editIndex]
@@ -55,13 +55,13 @@ const stocksReducer = (state = initialState , action) => {
 
       }
       //end of STOCK_QUANTITY_CHANGE
-  })
-
-
     default:
       return state;
-        }
+  } //end of switch case
+
+
   }
+
 
 
 export default stocksReducer;
