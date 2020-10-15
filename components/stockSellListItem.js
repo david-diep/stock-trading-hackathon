@@ -46,7 +46,7 @@ export default function StockPurchaseListItem(props) {
           secondary={'$' + stock.price} /></Tooltip>
         <Tooltip placement="left" title="Quantity owned" aria-label="Quantity owned">
         <Chip size="small" label={stock.owned} className={classes.chipColor} /></Tooltip>
-        <Tooltip placement="bottom-start" title="Enter amount to sell" aria-label="Enter amount to sell">
+        <Tooltip placement="bottom" title="Enter amount to sell" aria-label="Enter amount to sell">
         <TextField required
           onChange={event => { setQuantity(parseInt(event.target.value)) }}
           style={{ width: '20%' }}
@@ -60,7 +60,7 @@ export default function StockPurchaseListItem(props) {
           variant="outlined"
           type="number"
           className={classes.quantityField} /></Tooltip>
-      <Tooltip placement="top-end" title="Sell button" aria-label="Sell button">
+      <Tooltip placement="bottom" title="Sell button" aria-label="Sell button">
         <Button
           className={classes.buyButton}
           variant="contained"
