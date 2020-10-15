@@ -31,7 +31,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Navbar(props) {
   const classes = useStyles();
-  const money = useSelector(state => state.stockState.money)
 
   return (
     <div className={classes.root}>
@@ -57,7 +56,7 @@ export default function Navbar(props) {
 
           <Tooltip placement="bottom" title="Available balance of cash" aria-label="Available balance of cash">
           <Typography className={classes.availableCash}>
-            <b>Available Cash:</b> ${money.toFixed(2)}
+              <b>Available Cash: $</b> {props.money.toFixed(2)}
           </Typography>
           </Tooltip>
         </Toolbar>

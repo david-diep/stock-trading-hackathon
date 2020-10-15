@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Tooltip from '@material-ui/core/Tooltip';
 import {  ListItem, Button, ListItemSecondaryAction, ListItemText, TextField } from '@material-ui/core';
 import { useDispatch } from 'react-redux'
-import { stockOwnedChange } from '../redux/actions/stocksActions'
+import { stockBuy } from '../redux/actions/stocksActions'
 
 const useStyles = makeStyles((theme) => ({
   buyButton: {
@@ -26,7 +26,7 @@ export default function StockPurchaseListItem(props){
   const max =  Math.floor(props.money/stock.price)
   function handlePurchase(){
     if(quantity*stock.price <=props.money){
-      dispatch(stockOwnedChange(stock.id, quantity + stock.owned));
+      dispatch(stockBuy(stock.id, Math.min(max,quantity)));
     }
 
   }
