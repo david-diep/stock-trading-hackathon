@@ -11,7 +11,7 @@ Participants
 
 Live Demo
 ======
-[david-diep.github.io/kanban-hackathon](https://david-diep.github.io/kanban-hackathon/)
+[https://stocking-trading-hackathon.vercel.app/](https://stocking-trading-hackathon.vercel.app/)
 
 Core Requirements
 =======
