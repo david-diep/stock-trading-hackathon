@@ -25,10 +25,7 @@ export default function StockPurchaseListItem(props){
 
   const max =  Math.floor(props.money/stock.price)
   function handlePurchase(){
-    if(quantity*stock.price <=props.money){
       dispatch(stockBuy(stock.id, Math.min(max,quantity)));
-    }
-
   }
 
   return(
