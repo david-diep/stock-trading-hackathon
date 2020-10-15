@@ -60,7 +60,7 @@ export default function StockPurchaseListItem(props){
           label="Cost"
           value={"$"+(stock.price*quantity).toFixed(2)} />
 
-        <Tooltip placement="top-end" title="Buy button" aria-label="Buy button">
+
 
         <Button
           className={classes.buyButton}
