@@ -27,20 +27,32 @@ const useStyles = makeStyles((theme) => ({
   availableCash: {
     padding: '10px'
   },
+  tutorialButton: {
+    background: 'whitesmoke',
+    marginLeft: '10px'
+  }
 }));
 
 export default function Navbar(props) {
   const classes = useStyles();
-
+  const money = useSelector(state => state.stockState.money)
+  if (money > 1000000) {
+    props.setView('winning')
+  }
   return (
     <div className={classes.root}>
       <AppBar position="static" className={classes.navbar}>
         <Toolbar variant="dense" className={classes.toolbar}>
 
-          <Tooltip placement="bottom" title="View tutorial" aria-label="View tutorial">
+          <Tooltip placement="bottom" title="Home Page" aria-label="Home Page">
             <h1 onClick={() => props.setView('home')}>Stonks Trader Pro</h1>
           </Tooltip>
 
+          <Tooltip placement="bottom" title="View tutorial" aria-label="View tutorial">
+            <Button onClick={() => props.setView('tutorial')} variant="contained" className={classes.tutorialButton}>
+              Tutorial
+            </Button>
+          </Tooltip>
 
           <Tooltip placement="bottom" title="Buy stocks" aria-label="Buy stocks">
             <Button onClick={()=>props.setView('buying')} variant="contained" className={classes.buyPageButton}>
