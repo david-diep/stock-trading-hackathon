@@ -8,6 +8,7 @@ import { List, ListItem, Button, ListItemSecondaryAction, ListItemText, TextFiel
 import { useSelector } from 'react-redux'
 import StockSellListItem from './stockSellListItem'
 
+
 const useStyles = makeStyles((theme) => ({
   sellButton: {
     marginTop: '4px',
@@ -32,9 +33,7 @@ export default function SellingPage() {
   const stocks = useSelector(state => state.stockState.stocks)
   const money = useSelector(state => state.stockState.money)
   let ownedStocksList = stocks.filter(stock => stock.owned > 0).map((stock)=>{
-    if(stock.owned>0){
       return <StockSellListItem key={stock.id} money={money} stock={stock}/>
-    }
   })
 
 
@@ -51,6 +50,7 @@ export default function SellingPage() {
           {ownedStocksList.length === 0 && <h2>No Stocks Owned</h2>}
         </List>
       </Container>
+
     </>
   );
 }

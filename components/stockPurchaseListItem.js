@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Tooltip from '@material-ui/core/Tooltip';
 import {  ListItem, Button, ListItemSecondaryAction, ListItemText, TextField } from '@material-ui/core';
 import { useDispatch } from 'react-redux'
-import { stockOwnedChange } from '../redux/actions/stocksActions'
+import { stockBuy } from '../redux/actions/stocksActions'
 
 const useStyles = makeStyles((theme) => ({
   buyButton: {
@@ -25,8 +25,8 @@ export default function StockPurchaseListItem(props){
 
   const max =  Math.floor(props.money/stock.price)
   function handlePurchase(){
-    if(quantity*stock.price <=props.money){
-      dispatch(stockOwnedChange(stock.id, quantity + stock.owned));
+    if (quantity>0){
+      dispatch(stockBuy(stock.id, Math.min(max, quantity)));
     }
 
   }
@@ -35,15 +35,15 @@ export default function StockPurchaseListItem(props){
     <>
       <ListItem
         key={stock.id}>
-        <Tooltip placement="bottom-start" title="Stock name and price" aria-label="Stock name and price">
+
         <ListItemText
           className={classes.stockText}
           primary={stock.name}
-          secondary={'$' + stock.price} /></Tooltip>
-        <Tooltip placement="left" title="Enter purchase amount" aria-label="purchase quantity">
+          secondary={'$' + stock.price} />
+        <Tooltip placement="left" title="Amount to purchase" aria-label="Amount to purchase">
           <TextField required
             onChange={event => { setQuantity(parseInt(event.target.value)) }}
-            style={{width:'20%'}}
+            style={{width:'15%'}}
             InputProps={{
               inputProps: {
                 max: max, min: 1
@@ -55,13 +55,19 @@ export default function StockPurchaseListItem(props){
             type="number"
             className={classes.quantityField} />
           </Tooltip>
-        <Tooltip placement="top-end" title="Buy button" aria-label="Buy button">
+
+        <TextField disabled
+          label="Cost"
+          value={"$"+(stock.price*quantity).toFixed(2)} />
+
+
+
         <Button
           className={classes.buyButton}
           variant="contained"
           color="primary"
         onClick={() => handlePurchase()}
-          >Buy</Button></Tooltip>
+          >Buy</Button>
       </ListItem>
     </>
   )
