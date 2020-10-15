@@ -52,7 +52,7 @@ const stocksReducer = (state = initialState , action) => {
         console.log('selling')
         const total = focusStock.price * focusStock.owned;
         newMoney+=total;
-        focusStock.owned-=quantity;
+        focusStock.owned=quantity;
         return Object.assign({}, state, {
           stocks: newStocks,
           money: newMoney
