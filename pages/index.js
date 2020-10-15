@@ -8,7 +8,7 @@ import SellingPage from '../components/sellingPage'
 import HomePage from '../components/homePage'
 
 
-import { Provider, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import store from '../redux/store'
 import { stockPriceChange} from '../redux/actions/stocksActions'
 
@@ -33,11 +33,11 @@ export default function Index() {
     render = <SellingPage/>
   }
   return (
-    <Provider store={store}>
-    <Navbar
-      setView={setView}
-      availableCash={cash}/>
-    {render}
-    </Provider>
+    <>
+      <Navbar
+        setView={setView}
+        />
+      {render}
+    </>
   );
 }
